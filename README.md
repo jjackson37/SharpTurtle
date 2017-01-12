@@ -1,2 +1,2 @@
 # SharpTurtle
-Windows forms turtle drawing program, written in C#
+Windows forms grid based drawing program, written in C#
