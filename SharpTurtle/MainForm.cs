@@ -18,13 +18,23 @@ namespace SharpTurtle
 
         }
 
+        private void buttonSelectColor_Click(object sender, EventArgs e)
+        {
+            ColorDialog selectColorDialog = new ColorDialog();
+            selectColorDialog.AllowFullOpen = true;
+            selectColorDialog.ShowHelp = true;
+            selectColorDialog.Color = buttonSelectedColor.BackColor;
+            if (selectColorDialog.ShowDialog() == DialogResult.OK)
+                buttonSelectedColor.BackColor = selectColorDialog.Color;
+        }
+
         private void penDraw(object sender, EventArgs e)
         {
             try
             {
                 int drawLength = Convert.ToInt32(textBox1.Text);
                 System.Drawing.Pen drawingPen;
-                drawingPen = new System.Drawing.Pen(System.Drawing.Color.Red);
+                drawingPen = new System.Drawing.Pen(buttonSelectedColor.BackColor);
                 System.Drawing.Graphics formGraphics = CreateGraphics();
                 Button pressedButton = (Button)sender;
                 switch (pressedButton.Name)

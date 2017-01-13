@@ -85,6 +85,7 @@
             this.buttonSelectColor.Text = "          Color Select";
             this.buttonSelectColor.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.buttonSelectColor.UseVisualStyleBackColor = true;
+            this.buttonSelectColor.Click += new System.EventHandler(this.buttonSelectColor_Click);
             // 
             // paintCheckBox
             // 
