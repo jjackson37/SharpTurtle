@@ -7,6 +7,7 @@ namespace SharpTurtle
 {
     public partial class mainForm : Form
     {
+        const int maxX = 470, minX = 0, maxY = 560, minY = 0;
         int coordX, coordY;
         List<string> lineList = new List<string>();
 
@@ -57,51 +58,103 @@ namespace SharpTurtle
                 drawingPen.Dispose();
             }
             drawingPen = new Pen(buttonSelectedColor.BackColor);
-            formGraphics.DrawEllipse(drawingPen,coordX-3,coordY-3,6,6);
+            formGraphics.DrawEllipse(drawingPen, coordX - 3, coordY - 3, 6, 6);
             formGraphics.Dispose();
         }
 
         private void penDraw(object sender, EventArgs e)
         {
-            int drawLength = Convert.ToInt32(textBox1.Text);
-            Button pressedButton = (Button)sender;
+            try
+            {
+                int drawLength = Convert.ToInt32(textBox1.Text);
+                Button pressedButton = (Button)sender;
                 string addToList = Convert.ToString(coordX) + " " + Convert.ToString(coordY);
                 switch (pressedButton.Name)
                 {
                     case "buttonUp":
-                        coordY -= drawLength;
+                        if (coordY - drawLength > minY)
+                            coordY -= drawLength;
+                        else
+                            coordY = minY;
                         break;
                     case "buttonUpLeft":
-                        coordY -= drawLength;
-                        coordX -= drawLength;
+                        for (int i = 0; i != drawLength; i++)
+                        {
+                            if ((coordX == minX) || (coordY == minY))
+                            {
+                                break;
+                            }
+                            coordX--;
+                            coordY--;
+                        }
                         break;
                     case "buttonUpRight":
-                        coordY -= drawLength;
-                        coordX += drawLength;
+                        for (int i = 0; i != drawLength; i++)
+                        {
+                            if ((coordX == maxX) || (coordY == minY))
+                            {
+                                break;
+                            }
+                            coordX++;
+                            coordY--;
+                        }
                         break;
                     case "buttonDown":
-                        coordY += drawLength;
+                        if (coordY + drawLength < maxY)
+                            coordY += drawLength;
+                        else
+                            coordY = maxY;
                         break;
                     case "buttonDownLeft":
-                        coordY += drawLength;
-                        coordX -= drawLength;
+                        for (int i = 0; i != drawLength; i++)
+                        {
+                            if ((coordX == minX) || (coordY == maxY))
+                            {
+                                break;
+                            }
+                            coordX--;
+                            coordY++;
+                        }
                         break;
                     case "buttonDownRight":
-                        coordY += drawLength;
-                        coordX += drawLength;
+                        for (int i = 0; i != drawLength; i++)
+                        {
+                            if ((coordX == maxX) || (coordY == maxY))
+                            {
+                                break;
+                            }
+                            coordX++;
+                            coordY++;
+                        }
                         break;
                     case "buttonLeft":
-                        coordX -= drawLength;
+                        if (coordX - drawLength > minX)
+                            coordX -= drawLength;
+                        else
+                            coordX = minX;
                         break;
                     case "buttonRight":
-                        coordX += drawLength;
+                        if (coordX + drawLength < maxX)
+                            coordX += drawLength;
+                        else
+                            coordX = maxX;
                         break;
                 }
-                addToList += (" " + Convert.ToString(coordX) + " " + Convert.ToString(coordY) + " " 
-                    + buttonSelectedColor.BackColor.A + " " + buttonSelectedColor.BackColor.R + " "
-                    + buttonSelectedColor.BackColor.B + " " + buttonSelectedColor.BackColor.G);
-                lineList.Add(addToList);
+                if (paintCheckBox.Checked)
+                {
+                    addToList += (" " + Convert.ToString(coordX) + " " + Convert.ToString(coordY) + " "
+                        + buttonSelectedColor.BackColor.A + " " + buttonSelectedColor.BackColor.R + " "
+                        + buttonSelectedColor.BackColor.B + " " + buttonSelectedColor.BackColor.G);
+                    lineList.Add(addToList);
+                }
                 redrawLines();
+                errorLabel.Visible = false;
+            }
+            catch (FormatException ex)
+            {
+                errorLabel.Visible = true;
+                errorLabel.Text = ex.Message;
+            }
         }
     }
 }

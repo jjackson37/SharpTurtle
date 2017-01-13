@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.controlsBox = new System.Windows.Forms.GroupBox();
+            this.buttonReset = new System.Windows.Forms.Button();
             this.buttonUpLeft = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.buttonDownRight = new System.Windows.Forms.Button();
@@ -41,13 +42,14 @@
             this.buttonRight = new System.Windows.Forms.Button();
             this.buttonLeft = new System.Windows.Forms.Button();
             this.buttonUp = new System.Windows.Forms.Button();
-            this.buttonReset = new System.Windows.Forms.Button();
+            this.errorLabel = new System.Windows.Forms.Label();
             this.controlsBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // controlsBox
             // 
             this.controlsBox.BackColor = System.Drawing.SystemColors.Control;
+            this.controlsBox.Controls.Add(this.errorLabel);
             this.controlsBox.Controls.Add(this.buttonReset);
             this.controlsBox.Controls.Add(this.buttonUpLeft);
             this.controlsBox.Controls.Add(this.textBox1);
@@ -67,6 +69,16 @@
             this.controlsBox.TabIndex = 0;
             this.controlsBox.TabStop = false;
             this.controlsBox.Text = "Controls";
+            // 
+            // buttonReset
+            // 
+            this.buttonReset.Location = new System.Drawing.Point(119, 515);
+            this.buttonReset.Name = "buttonReset";
+            this.buttonReset.Size = new System.Drawing.Size(75, 23);
+            this.buttonReset.TabIndex = 12;
+            this.buttonReset.Text = "RESET";
+            this.buttonReset.UseVisualStyleBackColor = true;
+            this.buttonReset.Click += new System.EventHandler(this.buttonReset_Click);
             // 
             // buttonUpLeft
             // 
@@ -162,9 +174,9 @@
             this.paintCheckBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.paintCheckBox.Location = new System.Drawing.Point(33, 239);
             this.paintCheckBox.Name = "paintCheckBox";
-            this.paintCheckBox.Size = new System.Drawing.Size(144, 29);
+            this.paintCheckBox.Size = new System.Drawing.Size(126, 29);
             this.paintCheckBox.TabIndex = 5;
-            this.paintCheckBox.Text = "Brush down";
+            this.paintCheckBox.Text = "Pen down";
             this.paintCheckBox.UseVisualStyleBackColor = true;
             // 
             // buttonRight
@@ -200,15 +212,16 @@
             this.buttonUp.UseVisualStyleBackColor = true;
             this.buttonUp.Click += new System.EventHandler(this.penDraw);
             // 
-            // buttonReset
+            // errorLabel
             // 
-            this.buttonReset.Location = new System.Drawing.Point(119, 515);
-            this.buttonReset.Name = "buttonReset";
-            this.buttonReset.Size = new System.Drawing.Size(75, 23);
-            this.buttonReset.TabIndex = 12;
-            this.buttonReset.Text = "RESET";
-            this.buttonReset.UseVisualStyleBackColor = true;
-            this.buttonReset.Click += new System.EventHandler(this.buttonReset_Click);
+            this.errorLabel.AutoSize = true;
+            this.errorLabel.ForeColor = System.Drawing.Color.Red;
+            this.errorLabel.Location = new System.Drawing.Point(7, 218);
+            this.errorLabel.Name = "errorLabel";
+            this.errorLabel.Size = new System.Drawing.Size(35, 13);
+            this.errorLabel.TabIndex = 13;
+            this.errorLabel.Text = "label1";
+            this.errorLabel.Visible = false;
             // 
             // mainForm
             // 
@@ -217,6 +230,7 @@
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(684, 561);
             this.Controls.Add(this.controlsBox);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "mainForm";
             this.Text = "SharpTurtle";
             this.Load += new System.EventHandler(this.mainForm_Load);
@@ -242,6 +256,7 @@
         private System.Windows.Forms.Button buttonDownLeft;
         private System.Windows.Forms.Button buttonUpRight;
         private System.Windows.Forms.Button buttonReset;
+        private System.Windows.Forms.Label errorLabel;
     }
 }
 
