@@ -29,23 +29,26 @@
         private void InitializeComponent()
         {
             this.controlsBox = new System.Windows.Forms.GroupBox();
+            this.buttonUpLeft = new System.Windows.Forms.Button();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.buttonDownRight = new System.Windows.Forms.Button();
+            this.buttonDownLeft = new System.Windows.Forms.Button();
+            this.buttonUpRight = new System.Windows.Forms.Button();
             this.buttonSelectedColor = new System.Windows.Forms.Button();
             this.buttonSelectColor = new System.Windows.Forms.Button();
+            this.buttonDown = new System.Windows.Forms.Button();
             this.paintCheckBox = new System.Windows.Forms.CheckBox();
-            this.buttonUp = new System.Windows.Forms.Button();
             this.buttonRight = new System.Windows.Forms.Button();
             this.buttonLeft = new System.Windows.Forms.Button();
-            this.buttonDown = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.buttonDownLeft = new System.Windows.Forms.Button();
-            this.buttonDownRight = new System.Windows.Forms.Button();
-            this.buttonUpRight = new System.Windows.Forms.Button();
-            this.buttonUpLeft = new System.Windows.Forms.Button();
+            this.buttonUp = new System.Windows.Forms.Button();
+            this.buttonReset = new System.Windows.Forms.Button();
             this.controlsBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // controlsBox
             // 
+            this.controlsBox.BackColor = System.Drawing.SystemColors.Control;
+            this.controlsBox.Controls.Add(this.buttonReset);
             this.controlsBox.Controls.Add(this.buttonUpLeft);
             this.controlsBox.Controls.Add(this.textBox1);
             this.controlsBox.Controls.Add(this.buttonDownRight);
@@ -65,15 +68,70 @@
             this.controlsBox.TabStop = false;
             this.controlsBox.Text = "Controls";
             // 
+            // buttonUpLeft
+            // 
+            this.buttonUpLeft.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonUpLeft.Location = new System.Drawing.Point(7, 19);
+            this.buttonUpLeft.Name = "buttonUpLeft";
+            this.buttonUpLeft.Size = new System.Drawing.Size(60, 60);
+            this.buttonUpLeft.TabIndex = 11;
+            this.buttonUpLeft.Text = "↖";
+            this.buttonUpLeft.UseVisualStyleBackColor = true;
+            this.buttonUpLeft.Click += new System.EventHandler(this.penDraw);
+            // 
+            // textBox1
+            // 
+            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 35F);
+            this.textBox1.Location = new System.Drawing.Point(71, 85);
+            this.textBox1.MaxLength = 2;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(60, 60);
+            this.textBox1.TabIndex = 7;
+            this.textBox1.Text = "1";
+            // 
+            // buttonDownRight
+            // 
+            this.buttonDownRight.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonDownRight.Location = new System.Drawing.Point(135, 151);
+            this.buttonDownRight.Name = "buttonDownRight";
+            this.buttonDownRight.Size = new System.Drawing.Size(60, 60);
+            this.buttonDownRight.TabIndex = 9;
+            this.buttonDownRight.Text = "↘";
+            this.buttonDownRight.UseVisualStyleBackColor = true;
+            this.buttonDownRight.Click += new System.EventHandler(this.penDraw);
+            // 
+            // buttonDownLeft
+            // 
+            this.buttonDownLeft.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonDownLeft.Location = new System.Drawing.Point(7, 151);
+            this.buttonDownLeft.Name = "buttonDownLeft";
+            this.buttonDownLeft.Size = new System.Drawing.Size(60, 60);
+            this.buttonDownLeft.TabIndex = 8;
+            this.buttonDownLeft.Text = "↙";
+            this.buttonDownLeft.UseVisualStyleBackColor = true;
+            this.buttonDownLeft.Click += new System.EventHandler(this.penDraw);
+            // 
+            // buttonUpRight
+            // 
+            this.buttonUpRight.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonUpRight.Location = new System.Drawing.Point(135, 19);
+            this.buttonUpRight.Name = "buttonUpRight";
+            this.buttonUpRight.Size = new System.Drawing.Size(60, 60);
+            this.buttonUpRight.TabIndex = 10;
+            this.buttonUpRight.Text = "↗";
+            this.buttonUpRight.UseVisualStyleBackColor = true;
+            this.buttonUpRight.Click += new System.EventHandler(this.penDraw);
+            // 
             // buttonSelectedColor
             // 
+            this.buttonSelectedColor.BackColor = System.Drawing.Color.Red;
             this.buttonSelectedColor.Enabled = false;
             this.buttonSelectedColor.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonSelectedColor.Location = new System.Drawing.Point(141, 287);
             this.buttonSelectedColor.Name = "buttonSelectedColor";
             this.buttonSelectedColor.Size = new System.Drawing.Size(44, 44);
             this.buttonSelectedColor.TabIndex = 0;
-            this.buttonSelectedColor.UseVisualStyleBackColor = true;
+            this.buttonSelectedColor.UseVisualStyleBackColor = false;
             // 
             // buttonSelectColor
             // 
@@ -87,6 +145,17 @@
             this.buttonSelectColor.UseVisualStyleBackColor = true;
             this.buttonSelectColor.Click += new System.EventHandler(this.buttonSelectColor_Click);
             // 
+            // buttonDown
+            // 
+            this.buttonDown.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonDown.Location = new System.Drawing.Point(71, 151);
+            this.buttonDown.Name = "buttonDown";
+            this.buttonDown.Size = new System.Drawing.Size(60, 60);
+            this.buttonDown.TabIndex = 4;
+            this.buttonDown.Text = "↓";
+            this.buttonDown.UseVisualStyleBackColor = true;
+            this.buttonDown.Click += new System.EventHandler(this.penDraw);
+            // 
             // paintCheckBox
             // 
             this.paintCheckBox.AutoSize = true;
@@ -97,17 +166,6 @@
             this.paintCheckBox.TabIndex = 5;
             this.paintCheckBox.Text = "Brush down";
             this.paintCheckBox.UseVisualStyleBackColor = true;
-            // 
-            // buttonUp
-            // 
-            this.buttonUp.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonUp.Location = new System.Drawing.Point(71, 19);
-            this.buttonUp.Name = "buttonUp";
-            this.buttonUp.Size = new System.Drawing.Size(60, 60);
-            this.buttonUp.TabIndex = 1;
-            this.buttonUp.Text = "↑";
-            this.buttonUp.UseVisualStyleBackColor = true;
-            this.buttonUp.Click += new System.EventHandler(this.penDraw);
             // 
             // buttonRight
             // 
@@ -131,75 +189,32 @@
             this.buttonLeft.UseVisualStyleBackColor = true;
             this.buttonLeft.Click += new System.EventHandler(this.penDraw);
             // 
-            // buttonDown
+            // buttonUp
             // 
-            this.buttonDown.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonDown.Location = new System.Drawing.Point(71, 151);
-            this.buttonDown.Name = "buttonDown";
-            this.buttonDown.Size = new System.Drawing.Size(60, 60);
-            this.buttonDown.TabIndex = 4;
-            this.buttonDown.Text = "↓";
-            this.buttonDown.UseVisualStyleBackColor = true;
-            this.buttonDown.Click += new System.EventHandler(this.penDraw);
+            this.buttonUp.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonUp.Location = new System.Drawing.Point(71, 19);
+            this.buttonUp.Name = "buttonUp";
+            this.buttonUp.Size = new System.Drawing.Size(60, 60);
+            this.buttonUp.TabIndex = 1;
+            this.buttonUp.Text = "↑";
+            this.buttonUp.UseVisualStyleBackColor = true;
+            this.buttonUp.Click += new System.EventHandler(this.penDraw);
             // 
-            // textBox1
+            // buttonReset
             // 
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 35F);
-            this.textBox1.Location = new System.Drawing.Point(71, 85);
-            this.textBox1.MaxLength = 2;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(60, 60);
-            this.textBox1.TabIndex = 7;
-            this.textBox1.Text = "1";
-            // 
-            // buttonDownLeft
-            // 
-            this.buttonDownLeft.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonDownLeft.Location = new System.Drawing.Point(7, 151);
-            this.buttonDownLeft.Name = "buttonDownLeft";
-            this.buttonDownLeft.Size = new System.Drawing.Size(60, 60);
-            this.buttonDownLeft.TabIndex = 8;
-            this.buttonDownLeft.Text = "↙";
-            this.buttonDownLeft.UseVisualStyleBackColor = true;
-            this.buttonDownLeft.Click += new System.EventHandler(this.penDraw);
-            // 
-            // buttonDownRight
-            // 
-            this.buttonDownRight.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonDownRight.Location = new System.Drawing.Point(135, 151);
-            this.buttonDownRight.Name = "buttonDownRight";
-            this.buttonDownRight.Size = new System.Drawing.Size(60, 60);
-            this.buttonDownRight.TabIndex = 9;
-            this.buttonDownRight.Text = "↘";
-            this.buttonDownRight.UseVisualStyleBackColor = true;
-            this.buttonDownRight.Click += new System.EventHandler(this.penDraw);
-            // 
-            // buttonUpRight
-            // 
-            this.buttonUpRight.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonUpRight.Location = new System.Drawing.Point(135, 19);
-            this.buttonUpRight.Name = "buttonUpRight";
-            this.buttonUpRight.Size = new System.Drawing.Size(60, 60);
-            this.buttonUpRight.TabIndex = 10;
-            this.buttonUpRight.Text = "↗";
-            this.buttonUpRight.UseVisualStyleBackColor = true;
-            this.buttonUpRight.Click += new System.EventHandler(this.penDraw);
-            // 
-            // buttonUpLeft
-            // 
-            this.buttonUpLeft.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonUpLeft.Location = new System.Drawing.Point(7, 19);
-            this.buttonUpLeft.Name = "buttonUpLeft";
-            this.buttonUpLeft.Size = new System.Drawing.Size(60, 60);
-            this.buttonUpLeft.TabIndex = 11;
-            this.buttonUpLeft.Text = "↖";
-            this.buttonUpLeft.UseVisualStyleBackColor = true;
-            this.buttonUpLeft.Click += new System.EventHandler(this.penDraw);
+            this.buttonReset.Location = new System.Drawing.Point(119, 515);
+            this.buttonReset.Name = "buttonReset";
+            this.buttonReset.Size = new System.Drawing.Size(75, 23);
+            this.buttonReset.TabIndex = 12;
+            this.buttonReset.Text = "RESET";
+            this.buttonReset.UseVisualStyleBackColor = true;
+            this.buttonReset.Click += new System.EventHandler(this.buttonReset_Click);
             // 
             // mainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(684, 561);
             this.Controls.Add(this.controlsBox);
             this.Name = "mainForm";
@@ -226,6 +241,7 @@
         private System.Windows.Forms.Button buttonDownRight;
         private System.Windows.Forms.Button buttonDownLeft;
         private System.Windows.Forms.Button buttonUpRight;
+        private System.Windows.Forms.Button buttonReset;
     }
 }
 

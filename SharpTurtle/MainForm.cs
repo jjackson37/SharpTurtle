@@ -1,12 +1,14 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace SharpTurtle
 {
     public partial class mainForm : Form
     {
-        const int MinX = 0, MinY = 0, MaxX = 9, MaxY = 10;
         int coordX = 5, coordY = 5;
+        List<string> lineList = new List<string>();
 
         public mainForm()
         {
@@ -15,7 +17,7 @@ namespace SharpTurtle
 
         private void mainForm_Load(object sender, EventArgs e)
         {
-
+            redrawLines();
         }
 
         private void buttonSelectColor_Click(object sender, EventArgs e)
@@ -25,64 +27,78 @@ namespace SharpTurtle
             selectColorDialog.ShowHelp = true;
             selectColorDialog.Color = buttonSelectedColor.BackColor;
             if (selectColorDialog.ShowDialog() == DialogResult.OK)
+            {
                 buttonSelectedColor.BackColor = selectColorDialog.Color;
+                redrawLines();
+            }
+        }
+
+        private void buttonReset_Click(object sender, EventArgs e)
+        {
+            coordX = 5;
+            coordY = 5;
+            Invalidate();
+        }
+
+        private void redrawLines()
+        {
+            Pen drawingPen;
+            Graphics formGraphics = CreateGraphics();
+            formGraphics.Clear(Color.White);
+            foreach (string lineString in lineList)
+            {
+                string[] lineArray = lineString.Split(' ');
+                Color lineColor = Color.FromArgb(Convert.ToInt32(lineArray[4]), Convert.ToInt32(lineArray[5]), Convert.ToInt32(lineArray[6]), Convert.ToInt32(lineArray[7]));
+                drawingPen = new Pen(lineColor);
+                formGraphics.DrawLine(drawingPen, Convert.ToInt32(lineArray[0]), Convert.ToInt32(lineArray[1]), Convert.ToInt32(lineArray[2]), Convert.ToInt32(lineArray[3]));
+                drawingPen.Dispose();
+            }
+            drawingPen = new Pen(buttonSelectedColor.BackColor);
+            formGraphics.DrawEllipse(drawingPen,coordX-3,coordY-3,6,6);
+            formGraphics.Dispose();
         }
 
         private void penDraw(object sender, EventArgs e)
         {
-            try
-            {
-                int drawLength = Convert.ToInt32(textBox1.Text);
-                System.Drawing.Pen drawingPen;
-                drawingPen = new System.Drawing.Pen(buttonSelectedColor.BackColor);
-                System.Drawing.Graphics formGraphics = CreateGraphics();
-                Button pressedButton = (Button)sender;
+            int drawLength = Convert.ToInt32(textBox1.Text);
+            Button pressedButton = (Button)sender;
+                string addToList = Convert.ToString(coordX) + " " + Convert.ToString(coordY);
                 switch (pressedButton.Name)
                 {
                     case "buttonUp":
-                        formGraphics.DrawLine(drawingPen, coordX, coordY, coordX, coordY - drawLength);
                         coordY -= drawLength;
                         break;
                     case "buttonUpLeft":
-                        formGraphics.DrawLine(drawingPen, coordX, coordY, coordX - drawLength, coordY - drawLength);
                         coordY -= drawLength;
                         coordX -= drawLength;
                         break;
                     case "buttonUpRight":
-                        formGraphics.DrawLine(drawingPen, coordX, coordY, coordX + drawLength, coordY - drawLength);
                         coordY -= drawLength;
                         coordX += drawLength;
                         break;
                     case "buttonDown":
-                        formGraphics.DrawLine(drawingPen, coordX, coordY, coordX, coordY + drawLength);
                         coordY += drawLength;
                         break;
                     case "buttonDownLeft":
-                        formGraphics.DrawLine(drawingPen, coordX, coordY, coordX - drawLength, coordY + drawLength);
                         coordY += drawLength;
                         coordX -= drawLength;
                         break;
                     case "buttonDownRight":
-                        formGraphics.DrawLine(drawingPen, coordX, coordY, coordX + drawLength, coordY + drawLength);
                         coordY += drawLength;
                         coordX += drawLength;
                         break;
                     case "buttonLeft":
-                        formGraphics.DrawLine(drawingPen, coordX, coordY, coordX - drawLength, coordY);
                         coordX -= drawLength;
                         break;
                     case "buttonRight":
-                        formGraphics.DrawLine(drawingPen, coordX, coordY, coordX + drawLength, coordY);
                         coordX += drawLength;
                         break;
                 }
-                drawingPen.Dispose();
-                formGraphics.Dispose();
-            }
-            catch
-            {
-
-            }
+                addToList += (" " + Convert.ToString(coordX) + " " + Convert.ToString(coordY) + " " 
+                    + buttonSelectedColor.BackColor.A + " " + buttonSelectedColor.BackColor.R + " "
+                    + buttonSelectedColor.BackColor.B + " " + buttonSelectedColor.BackColor.G);
+                lineList.Add(addToList);
+                redrawLines();
         }
     }
 }
