@@ -7,7 +7,7 @@ namespace SharpTurtle
 {
     public partial class mainForm : Form
     {
-        int coordX = 5, coordY = 5;
+        int coordX, coordY;
         List<string> lineList = new List<string>();
 
         public mainForm()
@@ -17,6 +17,8 @@ namespace SharpTurtle
 
         private void mainForm_Load(object sender, EventArgs e)
         {
+            coordX = 5;
+            coordY = 5;
             redrawLines();
         }
 
@@ -37,7 +39,8 @@ namespace SharpTurtle
         {
             coordX = 5;
             coordY = 5;
-            Invalidate();
+            lineList.Clear();
+            redrawLines();
         }
 
         private void redrawLines()
