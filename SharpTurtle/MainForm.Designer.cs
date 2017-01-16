@@ -30,45 +30,34 @@
         {
             this.components = new System.ComponentModel.Container();
             this.controlsBox = new System.Windows.Forms.GroupBox();
-            this.errorLabel = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.NumericUpDown();
+            this.label1 = new System.Windows.Forms.Label();
+            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.buttonReset = new System.Windows.Forms.Button();
-            this.buttonUpLeft = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.buttonDownRight = new System.Windows.Forms.Button();
-            this.buttonDownLeft = new System.Windows.Forms.Button();
-            this.buttonUpRight = new System.Windows.Forms.Button();
             this.buttonSelectedColor = new System.Windows.Forms.Button();
             this.buttonSelectColor = new System.Windows.Forms.Button();
             this.buttonDown = new System.Windows.Forms.Button();
             this.paintCheckBox = new System.Windows.Forms.CheckBox();
-            this.buttonRight = new System.Windows.Forms.Button();
-            this.buttonLeft = new System.Windows.Forms.Button();
             this.buttonUp = new System.Windows.Forms.Button();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
-            this.label1 = new System.Windows.Forms.Label();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.label2 = new System.Windows.Forms.Label();
             this.controlsBox.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.textBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.SuspendLayout();
             // 
             // controlsBox
             // 
             this.controlsBox.BackColor = System.Drawing.SystemColors.Control;
-            this.controlsBox.Controls.Add(this.label1);
-            this.controlsBox.Controls.Add(this.numericUpDown1);
-            this.controlsBox.Controls.Add(this.errorLabel);
-            this.controlsBox.Controls.Add(this.buttonReset);
-            this.controlsBox.Controls.Add(this.buttonUpLeft);
             this.controlsBox.Controls.Add(this.textBox1);
-            this.controlsBox.Controls.Add(this.buttonDownRight);
-            this.controlsBox.Controls.Add(this.buttonDownLeft);
-            this.controlsBox.Controls.Add(this.buttonUpRight);
+            this.controlsBox.Controls.Add(this.paintCheckBox);
+            this.controlsBox.Controls.Add(this.label2);
+            this.controlsBox.Controls.Add(this.numericUpDown1);
+            this.controlsBox.Controls.Add(this.label1);
+            this.controlsBox.Controls.Add(this.buttonReset);
             this.controlsBox.Controls.Add(this.buttonSelectedColor);
             this.controlsBox.Controls.Add(this.buttonSelectColor);
             this.controlsBox.Controls.Add(this.buttonDown);
-            this.controlsBox.Controls.Add(this.paintCheckBox);
-            this.controlsBox.Controls.Add(this.buttonRight);
-            this.controlsBox.Controls.Add(this.buttonLeft);
             this.controlsBox.Controls.Add(this.buttonUp);
             this.controlsBox.Location = new System.Drawing.Point(472, 5);
             this.controlsBox.Name = "controlsBox";
@@ -77,20 +66,49 @@
             this.controlsBox.TabStop = false;
             this.controlsBox.Text = "Controls";
             // 
-            // errorLabel
+            // textBox1
             // 
-            this.errorLabel.AutoSize = true;
-            this.errorLabel.ForeColor = System.Drawing.Color.Red;
-            this.errorLabel.Location = new System.Drawing.Point(7, 218);
-            this.errorLabel.Name = "errorLabel";
-            this.errorLabel.Size = new System.Drawing.Size(35, 13);
-            this.errorLabel.TabIndex = 13;
-            this.errorLabel.Text = "label1";
-            this.errorLabel.Visible = false;
+            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 35F);
+            this.textBox1.Location = new System.Drawing.Point(15, 164);
+            this.textBox1.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(170, 60);
+            this.textBox1.TabIndex = 16;
+            this.textBox1.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(12, 227);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(37, 13);
+            this.label1.TabIndex = 15;
+            this.label1.Text = "Angle:";
+            // 
+            // numericUpDown1
+            // 
+            this.numericUpDown1.Font = new System.Drawing.Font("Microsoft Sans Serif", 35F);
+            this.numericUpDown1.Location = new System.Drawing.Point(15, 243);
+            this.numericUpDown1.Maximum = new decimal(new int[] {
+            360,
+            0,
+            0,
+            0});
+            this.numericUpDown1.Name = "numericUpDown1";
+            this.numericUpDown1.Size = new System.Drawing.Size(170, 60);
+            this.numericUpDown1.TabIndex = 14;
             // 
             // buttonReset
             // 
-            this.buttonReset.Location = new System.Drawing.Point(119, 515);
+            this.buttonReset.Location = new System.Drawing.Point(119, 521);
             this.buttonReset.Name = "buttonReset";
             this.buttonReset.Size = new System.Drawing.Size(75, 23);
             this.buttonReset.TabIndex = 12;
@@ -98,67 +116,12 @@
             this.buttonReset.UseVisualStyleBackColor = true;
             this.buttonReset.Click += new System.EventHandler(this.buttonReset_Click);
             // 
-            // buttonUpLeft
-            // 
-            this.buttonUpLeft.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonUpLeft.Location = new System.Drawing.Point(7, 19);
-            this.buttonUpLeft.Name = "buttonUpLeft";
-            this.buttonUpLeft.Size = new System.Drawing.Size(60, 60);
-            this.buttonUpLeft.TabIndex = 11;
-            this.buttonUpLeft.Text = "↖";
-            this.buttonUpLeft.UseVisualStyleBackColor = true;
-            this.buttonUpLeft.Click += new System.EventHandler(this.penDraw);
-            // 
-            // textBox1
-            // 
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 35F);
-            this.textBox1.Location = new System.Drawing.Point(71, 85);
-            this.textBox1.MaxLength = 2;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(60, 60);
-            this.textBox1.TabIndex = 7;
-            this.textBox1.Text = "1";
-            this.toolTip1.SetToolTip(this.textBox1, "Distance");
-            // 
-            // buttonDownRight
-            // 
-            this.buttonDownRight.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonDownRight.Location = new System.Drawing.Point(135, 151);
-            this.buttonDownRight.Name = "buttonDownRight";
-            this.buttonDownRight.Size = new System.Drawing.Size(60, 60);
-            this.buttonDownRight.TabIndex = 9;
-            this.buttonDownRight.Text = "↘";
-            this.buttonDownRight.UseVisualStyleBackColor = true;
-            this.buttonDownRight.Click += new System.EventHandler(this.penDraw);
-            // 
-            // buttonDownLeft
-            // 
-            this.buttonDownLeft.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonDownLeft.Location = new System.Drawing.Point(7, 151);
-            this.buttonDownLeft.Name = "buttonDownLeft";
-            this.buttonDownLeft.Size = new System.Drawing.Size(60, 60);
-            this.buttonDownLeft.TabIndex = 8;
-            this.buttonDownLeft.Text = "↙";
-            this.buttonDownLeft.UseVisualStyleBackColor = true;
-            this.buttonDownLeft.Click += new System.EventHandler(this.penDraw);
-            // 
-            // buttonUpRight
-            // 
-            this.buttonUpRight.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonUpRight.Location = new System.Drawing.Point(135, 19);
-            this.buttonUpRight.Name = "buttonUpRight";
-            this.buttonUpRight.Size = new System.Drawing.Size(60, 60);
-            this.buttonUpRight.TabIndex = 10;
-            this.buttonUpRight.Text = "↗";
-            this.buttonUpRight.UseVisualStyleBackColor = true;
-            this.buttonUpRight.Click += new System.EventHandler(this.penDraw);
-            // 
             // buttonSelectedColor
             // 
             this.buttonSelectedColor.BackColor = System.Drawing.Color.Red;
             this.buttonSelectedColor.Enabled = false;
             this.buttonSelectedColor.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonSelectedColor.Location = new System.Drawing.Point(141, 287);
+            this.buttonSelectedColor.Location = new System.Drawing.Point(141, 311);
             this.buttonSelectedColor.Name = "buttonSelectedColor";
             this.buttonSelectedColor.Size = new System.Drawing.Size(44, 44);
             this.buttonSelectedColor.TabIndex = 0;
@@ -166,7 +129,7 @@
             // 
             // buttonSelectColor
             // 
-            this.buttonSelectColor.Location = new System.Drawing.Point(15, 285);
+            this.buttonSelectColor.Location = new System.Drawing.Point(15, 309);
             this.buttonSelectColor.Name = "buttonSelectColor";
             this.buttonSelectColor.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.buttonSelectColor.Size = new System.Drawing.Size(172, 48);
@@ -179,11 +142,11 @@
             // buttonDown
             // 
             this.buttonDown.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonDown.Location = new System.Drawing.Point(71, 151);
+            this.buttonDown.Location = new System.Drawing.Point(15, 85);
             this.buttonDown.Name = "buttonDown";
-            this.buttonDown.Size = new System.Drawing.Size(60, 60);
+            this.buttonDown.Size = new System.Drawing.Size(170, 60);
             this.buttonDown.TabIndex = 4;
-            this.buttonDown.Text = "↓";
+            this.buttonDown.Text = "Reverse";
             this.buttonDown.UseVisualStyleBackColor = true;
             this.buttonDown.Click += new System.EventHandler(this.penDraw);
             // 
@@ -191,67 +154,23 @@
             // 
             this.paintCheckBox.AutoSize = true;
             this.paintCheckBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.paintCheckBox.Location = new System.Drawing.Point(33, 239);
+            this.paintCheckBox.Location = new System.Drawing.Point(15, 363);
             this.paintCheckBox.Name = "paintCheckBox";
-            this.paintCheckBox.Size = new System.Drawing.Size(126, 29);
+            this.paintCheckBox.Size = new System.Drawing.Size(138, 29);
             this.paintCheckBox.TabIndex = 5;
-            this.paintCheckBox.Text = "Pen down";
+            this.paintCheckBox.Text = "Pen down?";
             this.paintCheckBox.UseVisualStyleBackColor = true;
-            // 
-            // buttonRight
-            // 
-            this.buttonRight.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonRight.Location = new System.Drawing.Point(135, 85);
-            this.buttonRight.Name = "buttonRight";
-            this.buttonRight.Size = new System.Drawing.Size(60, 60);
-            this.buttonRight.TabIndex = 3;
-            this.buttonRight.Text = "→";
-            this.buttonRight.UseVisualStyleBackColor = true;
-            this.buttonRight.Click += new System.EventHandler(this.penDraw);
-            // 
-            // buttonLeft
-            // 
-            this.buttonLeft.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonLeft.Location = new System.Drawing.Point(7, 85);
-            this.buttonLeft.Name = "buttonLeft";
-            this.buttonLeft.Size = new System.Drawing.Size(60, 60);
-            this.buttonLeft.TabIndex = 2;
-            this.buttonLeft.Text = "←";
-            this.buttonLeft.UseVisualStyleBackColor = true;
-            this.buttonLeft.Click += new System.EventHandler(this.penDraw);
             // 
             // buttonUp
             // 
             this.buttonUp.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonUp.Location = new System.Drawing.Point(71, 19);
+            this.buttonUp.Location = new System.Drawing.Point(15, 19);
             this.buttonUp.Name = "buttonUp";
-            this.buttonUp.Size = new System.Drawing.Size(60, 60);
+            this.buttonUp.Size = new System.Drawing.Size(170, 60);
             this.buttonUp.TabIndex = 1;
-            this.buttonUp.Text = "↑";
+            this.buttonUp.Text = "Forward";
             this.buttonUp.UseVisualStyleBackColor = true;
             this.buttonUp.Click += new System.EventHandler(this.penDraw);
-            // 
-            // numericUpDown1
-            // 
-            this.numericUpDown1.Font = new System.Drawing.Font("Microsoft Sans Serif", 35F);
-            this.numericUpDown1.Location = new System.Drawing.Point(15, 352);
-            this.numericUpDown1.Maximum = new decimal(new int[] {
-            360,
-            0,
-            0,
-            0});
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(170, 60);
-            this.numericUpDown1.TabIndex = 14;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 336);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(37, 13);
-            this.label1.TabIndex = 15;
-            this.label1.Text = "Angle:";
             // 
             // toolTip1
             // 
@@ -259,6 +178,15 @@
             this.toolTip1.ShowAlways = true;
             this.toolTip1.UseAnimation = false;
             this.toolTip1.UseFading = false;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(12, 148);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(49, 13);
+            this.label2.TabIndex = 16;
+            this.label2.Text = "Distance";
             // 
             // mainForm
             // 
@@ -273,6 +201,7 @@
             this.Load += new System.EventHandler(this.mainForm_Load);
             this.controlsBox.ResumeLayout(false);
             this.controlsBox.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.textBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             this.ResumeLayout(false);
 
@@ -282,22 +211,16 @@
 
         private System.Windows.Forms.GroupBox controlsBox;
         private System.Windows.Forms.Button buttonUp;
-        private System.Windows.Forms.Button buttonLeft;
         private System.Windows.Forms.Button buttonDown;
-        private System.Windows.Forms.Button buttonRight;
         private System.Windows.Forms.CheckBox paintCheckBox;
         private System.Windows.Forms.Button buttonSelectColor;
         private System.Windows.Forms.Button buttonSelectedColor;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Button buttonUpLeft;
-        private System.Windows.Forms.Button buttonDownRight;
-        private System.Windows.Forms.Button buttonDownLeft;
-        private System.Windows.Forms.Button buttonUpRight;
         private System.Windows.Forms.Button buttonReset;
-        private System.Windows.Forms.Label errorLabel;
         private System.Windows.Forms.NumericUpDown numericUpDown1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ToolTip toolTip1;
+        private System.Windows.Forms.NumericUpDown textBox1;
+        private System.Windows.Forms.Label label2;
     }
 }
 
