@@ -7,8 +7,8 @@ namespace SharpTurtle
 {
     public partial class mainForm : Form
     {
-        const int maxX = 470, minX = 0, maxY = 560, minY = 0;
-        static int coordX, coordY;
+        const int _MAXX = 470, _MINX = 0, _MAXY = 560, _MINY = 0;
+        static int coordX, coordY, angle;
         List<string> lineList = new List<string>();
 
         public mainForm()
@@ -20,6 +20,7 @@ namespace SharpTurtle
         {
             coordX = 5;
             coordY = 5;
+            angle = Convert.ToInt32(angleInput.Value);
             redrawLines();
         }
 
@@ -67,19 +68,18 @@ namespace SharpTurtle
             int drawLength = Convert.ToInt32(textBox1.Text);
             Button pressedButton = (Button)sender;
             string addToList = Convert.ToString(coordX) + " " + Convert.ToString(coordY);
+            var angleRadians = (Convert.ToInt32(angleInput.Value) % 360) * Math.PI / 180;
             switch (pressedButton.Name)
             {
                 case "buttonUp":
-                    if (coordY - drawLength > minY)
-                        coordY -= drawLength;
-                    else
-                        coordY = minY;
+                    coordY = coordY + (int)(drawLength * Math.Cos(angleRadians));
+                    coordX = coordX + (int)(drawLength * Math.Sin(angleRadians));
                     break;
                 case "buttonDown":
-                    if (coordY + drawLength < maxY)
+                    if (coordY + drawLength < _MAXY)
                         coordY += drawLength;
                     else
-                        coordY = maxY;
+                        coordY = _MAXY;
                     break;
             }
             if (paintCheckBox.Checked)

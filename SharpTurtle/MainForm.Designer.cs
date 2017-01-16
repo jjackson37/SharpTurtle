@@ -31,19 +31,19 @@
             this.components = new System.ComponentModel.Container();
             this.controlsBox = new System.Windows.Forms.GroupBox();
             this.textBox1 = new System.Windows.Forms.NumericUpDown();
+            this.paintCheckBox = new System.Windows.Forms.CheckBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.angleInput = new System.Windows.Forms.NumericUpDown();
             this.label1 = new System.Windows.Forms.Label();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.buttonReset = new System.Windows.Forms.Button();
             this.buttonSelectedColor = new System.Windows.Forms.Button();
             this.buttonSelectColor = new System.Windows.Forms.Button();
             this.buttonDown = new System.Windows.Forms.Button();
-            this.paintCheckBox = new System.Windows.Forms.CheckBox();
             this.buttonUp = new System.Windows.Forms.Button();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.label2 = new System.Windows.Forms.Label();
             this.controlsBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.textBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.angleInput)).BeginInit();
             this.SuspendLayout();
             // 
             // controlsBox
@@ -52,7 +52,7 @@
             this.controlsBox.Controls.Add(this.textBox1);
             this.controlsBox.Controls.Add(this.paintCheckBox);
             this.controlsBox.Controls.Add(this.label2);
-            this.controlsBox.Controls.Add(this.numericUpDown1);
+            this.controlsBox.Controls.Add(this.angleInput);
             this.controlsBox.Controls.Add(this.label1);
             this.controlsBox.Controls.Add(this.buttonReset);
             this.controlsBox.Controls.Add(this.buttonSelectedColor);
@@ -79,10 +79,43 @@
             this.textBox1.Size = new System.Drawing.Size(170, 60);
             this.textBox1.TabIndex = 16;
             this.textBox1.Value = new decimal(new int[] {
-            1,
+            10,
             0,
             0,
             0});
+            // 
+            // paintCheckBox
+            // 
+            this.paintCheckBox.AutoSize = true;
+            this.paintCheckBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.paintCheckBox.Location = new System.Drawing.Point(15, 363);
+            this.paintCheckBox.Name = "paintCheckBox";
+            this.paintCheckBox.Size = new System.Drawing.Size(138, 29);
+            this.paintCheckBox.TabIndex = 5;
+            this.paintCheckBox.Text = "Pen down?";
+            this.paintCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(12, 148);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(52, 13);
+            this.label2.TabIndex = 16;
+            this.label2.Text = "Distance:";
+            // 
+            // angleInput
+            // 
+            this.angleInput.Font = new System.Drawing.Font("Microsoft Sans Serif", 35F);
+            this.angleInput.Location = new System.Drawing.Point(15, 243);
+            this.angleInput.Maximum = new decimal(new int[] {
+            360,
+            0,
+            0,
+            0});
+            this.angleInput.Name = "angleInput";
+            this.angleInput.Size = new System.Drawing.Size(170, 60);
+            this.angleInput.TabIndex = 14;
             // 
             // label1
             // 
@@ -92,19 +125,6 @@
             this.label1.Size = new System.Drawing.Size(37, 13);
             this.label1.TabIndex = 15;
             this.label1.Text = "Angle:";
-            // 
-            // numericUpDown1
-            // 
-            this.numericUpDown1.Font = new System.Drawing.Font("Microsoft Sans Serif", 35F);
-            this.numericUpDown1.Location = new System.Drawing.Point(15, 243);
-            this.numericUpDown1.Maximum = new decimal(new int[] {
-            360,
-            0,
-            0,
-            0});
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(170, 60);
-            this.numericUpDown1.TabIndex = 14;
             // 
             // buttonReset
             // 
@@ -150,17 +170,6 @@
             this.buttonDown.UseVisualStyleBackColor = true;
             this.buttonDown.Click += new System.EventHandler(this.penDraw);
             // 
-            // paintCheckBox
-            // 
-            this.paintCheckBox.AutoSize = true;
-            this.paintCheckBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.paintCheckBox.Location = new System.Drawing.Point(15, 363);
-            this.paintCheckBox.Name = "paintCheckBox";
-            this.paintCheckBox.Size = new System.Drawing.Size(138, 29);
-            this.paintCheckBox.TabIndex = 5;
-            this.paintCheckBox.Text = "Pen down?";
-            this.paintCheckBox.UseVisualStyleBackColor = true;
-            // 
             // buttonUp
             // 
             this.buttonUp.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -179,15 +188,6 @@
             this.toolTip1.UseAnimation = false;
             this.toolTip1.UseFading = false;
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 148);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(49, 13);
-            this.label2.TabIndex = 16;
-            this.label2.Text = "Distance";
-            // 
             // mainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -196,13 +196,15 @@
             this.ClientSize = new System.Drawing.Size(684, 561);
             this.Controls.Add(this.controlsBox);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "mainForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SharpTurtle";
             this.Load += new System.EventHandler(this.mainForm_Load);
             this.controlsBox.ResumeLayout(false);
             this.controlsBox.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.textBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.angleInput)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -216,7 +218,7 @@
         private System.Windows.Forms.Button buttonSelectColor;
         private System.Windows.Forms.Button buttonSelectedColor;
         private System.Windows.Forms.Button buttonReset;
-        private System.Windows.Forms.NumericUpDown numericUpDown1;
+        private System.Windows.Forms.NumericUpDown angleInput;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.NumericUpDown textBox1;
