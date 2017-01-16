@@ -144,7 +144,7 @@ namespace SharpTurtle
                 {
                     addToList += (" " + Convert.ToString(coordX) + " " + Convert.ToString(coordY) + " "
                         + buttonSelectedColor.BackColor.A + " " + buttonSelectedColor.BackColor.R + " "
-                        + buttonSelectedColor.BackColor.B + " " + buttonSelectedColor.BackColor.G);
+                        + buttonSelectedColor.BackColor.G + " " + buttonSelectedColor.BackColor.B);
                     lineList.Add(addToList);
                 }
                 redrawLines();
