@@ -8,7 +8,7 @@ namespace SharpTurtle
     public partial class mainForm : Form
     {
         const int maxX = 470, minX = 0, maxY = 560, minY = 0;
-        int coordX, coordY;
+        static int coordX, coordY;
         List<string> lineList = new List<string>();
 
         public mainForm()

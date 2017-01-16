@@ -28,7 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.controlsBox = new System.Windows.Forms.GroupBox();
+            this.errorLabel = new System.Windows.Forms.Label();
             this.buttonReset = new System.Windows.Forms.Button();
             this.buttonUpLeft = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
@@ -42,13 +44,18 @@
             this.buttonRight = new System.Windows.Forms.Button();
             this.buttonLeft = new System.Windows.Forms.Button();
             this.buttonUp = new System.Windows.Forms.Button();
-            this.errorLabel = new System.Windows.Forms.Label();
+            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.label1 = new System.Windows.Forms.Label();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.controlsBox.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.SuspendLayout();
             // 
             // controlsBox
             // 
             this.controlsBox.BackColor = System.Drawing.SystemColors.Control;
+            this.controlsBox.Controls.Add(this.label1);
+            this.controlsBox.Controls.Add(this.numericUpDown1);
             this.controlsBox.Controls.Add(this.errorLabel);
             this.controlsBox.Controls.Add(this.buttonReset);
             this.controlsBox.Controls.Add(this.buttonUpLeft);
@@ -69,6 +76,17 @@
             this.controlsBox.TabIndex = 0;
             this.controlsBox.TabStop = false;
             this.controlsBox.Text = "Controls";
+            // 
+            // errorLabel
+            // 
+            this.errorLabel.AutoSize = true;
+            this.errorLabel.ForeColor = System.Drawing.Color.Red;
+            this.errorLabel.Location = new System.Drawing.Point(7, 218);
+            this.errorLabel.Name = "errorLabel";
+            this.errorLabel.Size = new System.Drawing.Size(35, 13);
+            this.errorLabel.TabIndex = 13;
+            this.errorLabel.Text = "label1";
+            this.errorLabel.Visible = false;
             // 
             // buttonReset
             // 
@@ -100,6 +118,7 @@
             this.textBox1.Size = new System.Drawing.Size(60, 60);
             this.textBox1.TabIndex = 7;
             this.textBox1.Text = "1";
+            this.toolTip1.SetToolTip(this.textBox1, "Distance");
             // 
             // buttonDownRight
             // 
@@ -212,16 +231,34 @@
             this.buttonUp.UseVisualStyleBackColor = true;
             this.buttonUp.Click += new System.EventHandler(this.penDraw);
             // 
-            // errorLabel
+            // numericUpDown1
             // 
-            this.errorLabel.AutoSize = true;
-            this.errorLabel.ForeColor = System.Drawing.Color.Red;
-            this.errorLabel.Location = new System.Drawing.Point(7, 218);
-            this.errorLabel.Name = "errorLabel";
-            this.errorLabel.Size = new System.Drawing.Size(35, 13);
-            this.errorLabel.TabIndex = 13;
-            this.errorLabel.Text = "label1";
-            this.errorLabel.Visible = false;
+            this.numericUpDown1.Font = new System.Drawing.Font("Microsoft Sans Serif", 35F);
+            this.numericUpDown1.Location = new System.Drawing.Point(15, 352);
+            this.numericUpDown1.Maximum = new decimal(new int[] {
+            360,
+            0,
+            0,
+            0});
+            this.numericUpDown1.Name = "numericUpDown1";
+            this.numericUpDown1.Size = new System.Drawing.Size(170, 60);
+            this.numericUpDown1.TabIndex = 14;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(12, 336);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(37, 13);
+            this.label1.TabIndex = 15;
+            this.label1.Text = "Angle:";
+            // 
+            // toolTip1
+            // 
+            this.toolTip1.AutomaticDelay = 0;
+            this.toolTip1.ShowAlways = true;
+            this.toolTip1.UseAnimation = false;
+            this.toolTip1.UseFading = false;
             // 
             // mainForm
             // 
@@ -236,6 +273,7 @@
             this.Load += new System.EventHandler(this.mainForm_Load);
             this.controlsBox.ResumeLayout(false);
             this.controlsBox.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -257,6 +295,9 @@
         private System.Windows.Forms.Button buttonUpRight;
         private System.Windows.Forms.Button buttonReset;
         private System.Windows.Forms.Label errorLabel;
+        private System.Windows.Forms.NumericUpDown numericUpDown1;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ToolTip toolTip1;
     }
 }
 
