@@ -8,7 +8,8 @@ namespace SharpTurtle
     public partial class mainForm : Form
     {
         const int _MAXX = 470, _MINX = 0, _MAXY = 560, _MINY = 0;
-        static int coordX, coordY, angle;
+        static int coordX, coordY;
+        float newX = 5, newY = 5;
         List<string> lineList = new List<string>();
 
         public mainForm()
@@ -20,8 +21,7 @@ namespace SharpTurtle
         {
             coordX = 5;
             coordY = 5;
-            angle = Convert.ToInt32(angleInput.Value);
-            redrawLines();
+            RedrawLines();
         }
 
         private void buttonSelectColor_Click(object sender, EventArgs e)
@@ -33,7 +33,7 @@ namespace SharpTurtle
             if (selectColorDialog.ShowDialog() == DialogResult.OK)
             {
                 buttonSelectedColor.BackColor = selectColorDialog.Color;
-                redrawLines();
+                RedrawLines();
             }
         }
 
@@ -42,10 +42,10 @@ namespace SharpTurtle
             coordX = 5;
             coordY = 5;
             lineList.Clear();
-            redrawLines();
+            RedrawLines();
         }
 
-        private void redrawLines()
+        private void RedrawLines()
         {
             Pen drawingPen;
             Graphics formGraphics = CreateGraphics();
@@ -63,23 +63,41 @@ namespace SharpTurtle
             formGraphics.Dispose();
         }
 
-        private void penDraw(object sender, EventArgs e)
+        private void PenDraw(object sender, EventArgs e)
         {
             int drawLength = Convert.ToInt32(textBox1.Text);
+            newX = coordX;
+            newY = coordY;
             Button pressedButton = (Button)sender;
             string addToList = Convert.ToString(coordX) + " " + Convert.ToString(coordY);
-            var angleRadians = (Convert.ToInt32(angleInput.Value) % 360) * Math.PI / 180;
+            var angleRadians = ((int)angleInput.Value % 360) * Math.PI / 180;
             switch (pressedButton.Name)
             {
                 case "buttonUp":
-                    coordY = coordY + (int)(drawLength * Math.Cos(angleRadians));
-                    coordX = coordX + (int)(drawLength * Math.Sin(angleRadians));
+                    for (int i = 0; i != drawLength; i++)
+                    {
+                        newY = newY + (float)(1 * Math.Cos(angleRadians));
+                        newX = newX + (float)(1 * Math.Sin(angleRadians));
+                        if (CheckBoundires(newX, newY, true))
+                        {
+                            break;
+                        }
+                    }
+                    coordX = (int)newX;
+                    coordY = (int)newY;
                     break;
                 case "buttonDown":
-                    if (coordY + drawLength < _MAXY)
-                        coordY += drawLength;
-                    else
-                        coordY = _MAXY;
+                    for (int i = 0; i != drawLength; i++)
+                    {
+                        newY = newY - (float)(1 * Math.Cos(angleRadians));
+                        newX = newX - (float)(1 * Math.Sin(angleRadians));
+                        if (CheckBoundires(newX, newY, false))
+                        {
+                            break;
+                        }
+                    }
+                    coordX = (int)newX;
+                    coordY = (int)newY;
                     break;
             }
             if (paintCheckBox.Checked)
@@ -89,7 +107,78 @@ namespace SharpTurtle
                     + buttonSelectedColor.BackColor.G + " " + buttonSelectedColor.BackColor.B);
                 lineList.Add(addToList);
             }
-            redrawLines();
+            RedrawLines();
+        }
+
+        private bool CheckBoundires(float x, float y, bool forward)
+        {
+            bool boundryHit = false;
+            int angle = 0;
+            angle = (int)(angleInput.Value);
+            if (!forward)
+            {
+                if (angle < 180)
+                {
+                    angle += 180;
+                }
+                else
+                {
+                    angle -= 180;
+                }
+            }
+            if (angle == 135)
+            {
+                if (x >= _MAXX)
+                {
+                    boundryHit = true;
+                    newX = _MAXX;
+                }
+                if (y <= _MINY)
+                {
+                    newY = _MINY;
+                    boundryHit = true;
+                }
+            }
+            else if (angle == 315)
+            {
+                if (x <= _MINX)
+                {
+                    boundryHit = true;
+                    newX = _MINX;
+                }
+                if (y >= _MAXY)
+                {
+                    newY = _MAXY;
+                    boundryHit = true;
+                }
+            }
+            else if(135<angle & angle<315)
+            {
+                if (x <= _MINX)
+                {
+                    boundryHit = true;
+                    newX = _MINX;
+                }
+                if (y <= _MINY)
+                {
+                    newY = _MINY;
+                    boundryHit = true;
+                }
+            }
+            else
+            {
+                if (x >= _MAXX)
+                {
+                    newX = _MAXX;
+                    boundryHit = true;
+                }
+                if (y >= _MAXY)
+                {
+                    newY = _MAXY;
+                    boundryHit = true;
+                }
+            }
+            return boundryHit;
         }
 
     }

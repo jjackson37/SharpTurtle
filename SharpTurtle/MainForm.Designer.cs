@@ -168,7 +168,7 @@
             this.buttonDown.TabIndex = 4;
             this.buttonDown.Text = "Reverse";
             this.buttonDown.UseVisualStyleBackColor = true;
-            this.buttonDown.Click += new System.EventHandler(this.penDraw);
+            this.buttonDown.Click += new System.EventHandler(this.PenDraw);
             // 
             // buttonUp
             // 
@@ -179,7 +179,7 @@
             this.buttonUp.TabIndex = 1;
             this.buttonUp.Text = "Forward";
             this.buttonUp.UseVisualStyleBackColor = true;
-            this.buttonUp.Click += new System.EventHandler(this.penDraw);
+            this.buttonUp.Click += new System.EventHandler(this.PenDraw);
             // 
             // toolTip1
             // 
