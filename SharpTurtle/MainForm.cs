@@ -24,6 +24,37 @@ namespace SharpTurtle
             RedrawLines();
         }
 
+        private void buttonExecute_Click(object sender, EventArgs e)
+        {
+            string commandString = commandInput.Text;
+            string[] commandArray = commandString.Split(';');
+            foreach(string currentCommand in commandArray)
+            {
+                string commandToExecute = currentCommand.Split('(')[0].ToLower();
+                string commandParameter = currentCommand.Split('(')[1].TrimEnd(')').ToLower();
+                switch (commandToExecute)
+                {
+                    case "forward":
+
+                        break;
+                    case "backward":
+
+                        break;
+                    case "left":
+
+                        break;
+                    case "right":
+
+                        break;
+                    case "pen":
+                        paintCheckBox.Checked = Convert.ToBoolean(commandParameter);
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
+
         private void buttonSelectColor_Click(object sender, EventArgs e)
         {
             ColorDialog selectColorDialog = new ColorDialog();

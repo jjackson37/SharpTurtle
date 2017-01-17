@@ -64,7 +64,7 @@
             this.controlsBox.Controls.Add(this.buttonUp);
             this.controlsBox.Location = new System.Drawing.Point(472, 5);
             this.controlsBox.Name = "controlsBox";
-            this.controlsBox.Size = new System.Drawing.Size(200, 640);
+            this.controlsBox.Size = new System.Drawing.Size(200, 660);
             this.controlsBox.TabIndex = 0;
             this.controlsBox.TabStop = false;
             this.controlsBox.Text = "Controls";
@@ -131,7 +131,7 @@
             // 
             // buttonReset
             // 
-            this.buttonReset.Location = new System.Drawing.Point(104, 551);
+            this.buttonReset.Location = new System.Drawing.Point(104, 571);
             this.buttonReset.Name = "buttonReset";
             this.buttonReset.Size = new System.Drawing.Size(90, 83);
             this.buttonReset.TabIndex = 12;
@@ -193,7 +193,7 @@
             // 
             // commandInput
             // 
-            this.commandInput.Location = new System.Drawing.Point(12, 556);
+            this.commandInput.Location = new System.Drawing.Point(12, 576);
             this.commandInput.Multiline = true;
             this.commandInput.Name = "commandInput";
             this.commandInput.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
@@ -202,19 +202,20 @@
             // 
             // buttonExecute
             // 
-            this.buttonExecute.Location = new System.Drawing.Point(7, 551);
+            this.buttonExecute.Location = new System.Drawing.Point(7, 571);
             this.buttonExecute.Name = "buttonExecute";
             this.buttonExecute.Size = new System.Drawing.Size(91, 83);
             this.buttonExecute.TabIndex = 17;
             this.buttonExecute.Text = "Execute";
             this.buttonExecute.UseVisualStyleBackColor = true;
+            this.buttonExecute.Click += new System.EventHandler(this.buttonExecute_Click);
             // 
             // mainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(684, 657);
+            this.ClientSize = new System.Drawing.Size(684, 677);
             this.Controls.Add(this.commandInput);
             this.Controls.Add(this.controlsBox);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
