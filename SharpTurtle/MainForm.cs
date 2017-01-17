@@ -35,16 +35,30 @@ namespace SharpTurtle
                 switch (commandToExecute)
                 {
                     case "forward":
-
+                        MoveTurtle(Convert.ToInt32(commandParameter),true);
                         break;
                     case "backward":
-
+                        MoveTurtle(Convert.ToInt32(commandParameter),false);
                         break;
                     case "left":
-
+                        for (int i = 0; i != Convert.ToInt32(commandParameter); i++)
+                        {
+                            if (angleInput.Value == 0)
+                            {
+                                angleInput.Value = 360;
+                            }
+                            angleInput.Value--;
+                        }
                         break;
                     case "right":
-
+                        for (int i = 0; i != Convert.ToInt32(commandParameter); i++)
+                        {
+                            if (angleInput.Value == 360)
+                            {
+                                angleInput.Value = 0;
+                            }
+                            angleInput.Value++; 
+                        }
                         break;
                     case "pen":
                         paintCheckBox.Checked = Convert.ToBoolean(commandParameter);
@@ -72,6 +86,8 @@ namespace SharpTurtle
         {
             coordX = 5;
             coordY = 5;
+            textBox1.Value = 10;
+            angleInput.Value = 0;
             lineList.Clear();
             RedrawLines();
         }
@@ -97,48 +113,16 @@ namespace SharpTurtle
         private void PenDraw(object sender, EventArgs e)
         {
             int drawLength = Convert.ToInt32(textBox1.Text);
-            newX = coordX;
-            newY = coordY;
             Button pressedButton = (Button)sender;
-            string addToList = Convert.ToString(coordX) + " " + Convert.ToString(coordY);
-            var angleRadians = ((int)angleInput.Value % 360) * Math.PI / 180;
             switch (pressedButton.Name)
             {
                 case "buttonUp":
-                    for (int i = 0; i != drawLength; i++)
-                    {
-                        newY = newY + (float)(1 * Math.Cos(angleRadians));
-                        newX = newX + (float)(1 * Math.Sin(angleRadians));
-                        if (CheckBoundires(newX, newY, true))
-                        {
-                            break;
-                        }
-                    }
-                    coordX = (int)newX;
-                    coordY = (int)newY;
+                    MoveTurtle(drawLength,true);
                     break;
                 case "buttonDown":
-                    for (int i = 0; i != drawLength; i++)
-                    {
-                        newY = newY - (float)(1 * Math.Cos(angleRadians));
-                        newX = newX - (float)(1 * Math.Sin(angleRadians));
-                        if (CheckBoundires(newX, newY, false))
-                        {
-                            break;
-                        }
-                    }
-                    coordX = (int)newX;
-                    coordY = (int)newY;
+                    MoveTurtle(drawLength,false);
                     break;
             }
-            if (paintCheckBox.Checked)
-            {
-                addToList += (" " + Convert.ToString(coordX) + " " + Convert.ToString(coordY) + " "
-                    + buttonSelectedColor.BackColor.A + " " + buttonSelectedColor.BackColor.R + " "
-                    + buttonSelectedColor.BackColor.G + " " + buttonSelectedColor.BackColor.B);
-                lineList.Add(addToList);
-            }
-            RedrawLines();
         }
 
         private bool CheckBoundires(float x, float y, bool forward)
@@ -212,5 +196,46 @@ namespace SharpTurtle
             return boundryHit;
         }
 
+        private void MoveTurtle(int drawLength, bool forward)
+        {
+            string addToList = Convert.ToString(coordX) + " " + Convert.ToString(coordY);
+            double angleRadians = ((int)angleInput.Value % 360) * Math.PI / 180;
+            newX = coordX;
+            newY = coordY;
+            if (forward)
+            {
+                for (int i = 0; i != drawLength; i++)
+                {
+                    newY = newY + (float)(1 * Math.Cos(angleRadians));
+                    newX = newX + (float)(1 * Math.Sin(angleRadians));
+                    if (CheckBoundires(newX, newY, true))
+                    {
+                        break;
+                    }
+                }
+            }
+            else
+            {
+                for (int i = 0; i != drawLength; i++)
+                {
+                    newY = newY - (float)(1 * Math.Cos(angleRadians));
+                    newX = newX - (float)(1 * Math.Sin(angleRadians));
+                    if (CheckBoundires(newX, newY, false))
+                    {
+                        break;
+                    }
+                }
+            }
+            coordX = (int)newX;
+            coordY = (int)newY;
+            if (paintCheckBox.Checked)
+            {
+                addToList += (" " + Convert.ToString(coordX) + " " + Convert.ToString(coordY) + " "
+                    + buttonSelectedColor.BackColor.A + " " + buttonSelectedColor.BackColor.R + " "
+                    + buttonSelectedColor.BackColor.G + " " + buttonSelectedColor.BackColor.B);
+                lineList.Add(addToList);
+            }
+            RedrawLines();
+        }
     }
 }
