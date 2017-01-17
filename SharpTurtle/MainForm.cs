@@ -206,24 +206,24 @@ namespace SharpTurtle
             {
                 for (int i = 0; i != drawLength; i++)
                 {
-                    newY = newY + (float)(1 * Math.Cos(angleRadians));
-                    newX = newX + (float)(1 * Math.Sin(angleRadians));
                     if (CheckBoundires(newX, newY, true))
                     {
                         break;
                     }
+                    newY = newY + (float)(1 * Math.Cos(angleRadians));
+                    newX = newX + (float)(1 * Math.Sin(angleRadians));
                 }
             }
             else
             {
                 for (int i = 0; i != drawLength; i++)
                 {
-                    newY = newY - (float)(1 * Math.Cos(angleRadians));
-                    newX = newX - (float)(1 * Math.Sin(angleRadians));
                     if (CheckBoundires(newX, newY, false))
                     {
                         break;
                     }
+                    newY = newY - (float)(1 * Math.Cos(angleRadians));
+                    newX = newX - (float)(1 * Math.Sin(angleRadians));
                 }
             }
             coordX = (int)newX;
