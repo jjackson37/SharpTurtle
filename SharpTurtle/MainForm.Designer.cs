@@ -30,6 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             this.controlsBox = new System.Windows.Forms.GroupBox();
+            this.buttonExecute = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.NumericUpDown();
             this.paintCheckBox = new System.Windows.Forms.CheckBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -42,7 +43,6 @@
             this.buttonUp = new System.Windows.Forms.Button();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.commandInput = new System.Windows.Forms.TextBox();
-            this.buttonExecute = new System.Windows.Forms.Button();
             this.controlsBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.textBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.angleInput)).BeginInit();
@@ -68,6 +68,16 @@
             this.controlsBox.TabIndex = 0;
             this.controlsBox.TabStop = false;
             this.controlsBox.Text = "Controls";
+            // 
+            // buttonExecute
+            // 
+            this.buttonExecute.Location = new System.Drawing.Point(7, 571);
+            this.buttonExecute.Name = "buttonExecute";
+            this.buttonExecute.Size = new System.Drawing.Size(91, 83);
+            this.buttonExecute.TabIndex = 17;
+            this.buttonExecute.Text = "Execute";
+            this.buttonExecute.UseVisualStyleBackColor = true;
+            this.buttonExecute.Click += new System.EventHandler(this.buttonExecute_Click);
             // 
             // textBox1
             // 
@@ -200,16 +210,6 @@
             this.commandInput.Size = new System.Drawing.Size(454, 89);
             this.commandInput.TabIndex = 1;
             // 
-            // buttonExecute
-            // 
-            this.buttonExecute.Location = new System.Drawing.Point(7, 571);
-            this.buttonExecute.Name = "buttonExecute";
-            this.buttonExecute.Size = new System.Drawing.Size(91, 83);
-            this.buttonExecute.TabIndex = 17;
-            this.buttonExecute.Text = "Execute";
-            this.buttonExecute.UseVisualStyleBackColor = true;
-            this.buttonExecute.Click += new System.EventHandler(this.buttonExecute_Click);
-            // 
             // mainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -220,10 +220,12 @@
             this.Controls.Add(this.controlsBox);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "mainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SharpTurtle";
             this.Load += new System.EventHandler(this.mainForm_Load);
+            this.Shown += new System.EventHandler(this.mainForm_Shown);
             this.controlsBox.ResumeLayout(false);
             this.controlsBox.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.textBox1)).EndInit();

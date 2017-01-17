@@ -21,6 +21,9 @@ namespace SharpTurtle
         {
             coordX = 5;
             coordY = 5;
+            textBox1.Value = 10;
+            angleInput.Value = 0;
+            lineList.Clear();
             RedrawLines();
         }
 
@@ -82,14 +85,14 @@ namespace SharpTurtle
             }
         }
 
+        private void mainForm_Shown(object sender, EventArgs e)
+        {
+            RedrawLines();
+        }
+
         private void buttonReset_Click(object sender, EventArgs e)
         {
-            coordX = 5;
-            coordY = 5;
-            textBox1.Value = 10;
-            angleInput.Value = 0;
-            lineList.Clear();
-            RedrawLines();
+            mainForm_Load(null,null);
         }
 
         private void RedrawLines()
