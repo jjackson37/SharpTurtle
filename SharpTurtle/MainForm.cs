@@ -7,8 +7,9 @@ namespace SharpTurtle
 {
     public partial class mainForm : Form
     {
-        const int maxX = 470, minX = 0, maxY = 560, minY = 0;
-        int coordX, coordY;
+        const int _MAXX = 470, _MINX = 0, _MAXY = 560, _MINY = 0;
+        static int coordX, coordY;
+        float newX = 5, newY = 5;
         List<string> lineList = new List<string>();
 
         public mainForm()
@@ -20,7 +21,7 @@ namespace SharpTurtle
         {
             coordX = 5;
             coordY = 5;
-            redrawLines();
+            RedrawLines();
         }
 
         private void buttonSelectColor_Click(object sender, EventArgs e)
@@ -32,7 +33,7 @@ namespace SharpTurtle
             if (selectColorDialog.ShowDialog() == DialogResult.OK)
             {
                 buttonSelectedColor.BackColor = selectColorDialog.Color;
-                redrawLines();
+                RedrawLines();
             }
         }
 
@@ -41,10 +42,10 @@ namespace SharpTurtle
             coordX = 5;
             coordY = 5;
             lineList.Clear();
-            redrawLines();
+            RedrawLines();
         }
 
-        private void redrawLines()
+        private void RedrawLines()
         {
             Pen drawingPen;
             Graphics formGraphics = CreateGraphics();
@@ -62,99 +63,123 @@ namespace SharpTurtle
             formGraphics.Dispose();
         }
 
-        private void penDraw(object sender, EventArgs e)
+        private void PenDraw(object sender, EventArgs e)
         {
-            try
+            int drawLength = Convert.ToInt32(textBox1.Text);
+            newX = coordX;
+            newY = coordY;
+            Button pressedButton = (Button)sender;
+            string addToList = Convert.ToString(coordX) + " " + Convert.ToString(coordY);
+            var angleRadians = ((int)angleInput.Value % 360) * Math.PI / 180;
+            switch (pressedButton.Name)
             {
-                int drawLength = Convert.ToInt32(textBox1.Text);
-                Button pressedButton = (Button)sender;
-                string addToList = Convert.ToString(coordX) + " " + Convert.ToString(coordY);
-                switch (pressedButton.Name)
-                {
-                    case "buttonUp":
-                        if (coordY - drawLength > minY)
-                            coordY -= drawLength;
-                        else
-                            coordY = minY;
-                        break;
-                    case "buttonUpLeft":
-                        for (int i = 0; i != drawLength; i++)
+                case "buttonUp":
+                    for (int i = 0; i != drawLength; i++)
+                    {
+                        newY = newY + (float)(1 * Math.Cos(angleRadians));
+                        newX = newX + (float)(1 * Math.Sin(angleRadians));
+                        if (CheckBoundires(newX, newY, true))
                         {
-                            if ((coordX == minX) || (coordY == minY))
-                            {
-                                break;
-                            }
-                            coordX--;
-                            coordY--;
+                            break;
                         }
-                        break;
-                    case "buttonUpRight":
-                        for (int i = 0; i != drawLength; i++)
+                    }
+                    coordX = (int)newX;
+                    coordY = (int)newY;
+                    break;
+                case "buttonDown":
+                    for (int i = 0; i != drawLength; i++)
+                    {
+                        newY = newY - (float)(1 * Math.Cos(angleRadians));
+                        newX = newX - (float)(1 * Math.Sin(angleRadians));
+                        if (CheckBoundires(newX, newY, false))
                         {
-                            if ((coordX == maxX) || (coordY == minY))
-                            {
-                                break;
-                            }
-                            coordX++;
-                            coordY--;
+                            break;
                         }
-                        break;
-                    case "buttonDown":
-                        if (coordY + drawLength < maxY)
-                            coordY += drawLength;
-                        else
-                            coordY = maxY;
-                        break;
-                    case "buttonDownLeft":
-                        for (int i = 0; i != drawLength; i++)
-                        {
-                            if ((coordX == minX) || (coordY == maxY))
-                            {
-                                break;
-                            }
-                            coordX--;
-                            coordY++;
-                        }
-                        break;
-                    case "buttonDownRight":
-                        for (int i = 0; i != drawLength; i++)
-                        {
-                            if ((coordX == maxX) || (coordY == maxY))
-                            {
-                                break;
-                            }
-                            coordX++;
-                            coordY++;
-                        }
-                        break;
-                    case "buttonLeft":
-                        if (coordX - drawLength > minX)
-                            coordX -= drawLength;
-                        else
-                            coordX = minX;
-                        break;
-                    case "buttonRight":
-                        if (coordX + drawLength < maxX)
-                            coordX += drawLength;
-                        else
-                            coordX = maxX;
-                        break;
-                }
-                if (paintCheckBox.Checked)
-                {
-                    addToList += (" " + Convert.ToString(coordX) + " " + Convert.ToString(coordY) + " "
-                        + buttonSelectedColor.BackColor.A + " " + buttonSelectedColor.BackColor.R + " "
-                        + buttonSelectedColor.BackColor.G + " " + buttonSelectedColor.BackColor.B);
-                    lineList.Add(addToList);
-                }
-                redrawLines();
-                errorLabel.Visible = false;
+                    }
+                    coordX = (int)newX;
+                    coordY = (int)newY;
+                    break;
             }
-            catch (FormatException ex)
+            if (paintCheckBox.Checked)
             {
-                errorLabel.Visible = true;
-                errorLabel.Text = ex.Message;
+                addToList += (" " + Convert.ToString(coordX) + " " + Convert.ToString(coordY) + " "
+                    + buttonSelectedColor.BackColor.A + " " + buttonSelectedColor.BackColor.R + " "
+                    + buttonSelectedColor.BackColor.G + " " + buttonSelectedColor.BackColor.B);
+                lineList.Add(addToList);
             }
+            RedrawLines();
         }
+
+        private bool CheckBoundires(float x, float y, bool forward)
+        {
+            bool boundryHit = false;
+            int angle = 0;
+            angle = (int)(angleInput.Value);
+            if (!forward)
+            {
+                if (angle < 180)
+                {
+                    angle += 180;
+                }
+                else
+                {
+                    angle -= 180;
+                }
+            }
+            if (angle == 135)
+            {
+                if (x >= _MAXX)
+                {
+                    boundryHit = true;
+                    newX = _MAXX;
+                }
+                if (y <= _MINY)
+                {
+                    newY = _MINY;
+                    boundryHit = true;
+                }
+            }
+            else if (angle == 315)
+            {
+                if (x <= _MINX)
+                {
+                    boundryHit = true;
+                    newX = _MINX;
+                }
+                if (y >= _MAXY)
+                {
+                    newY = _MAXY;
+                    boundryHit = true;
+                }
+            }
+            else if(135<angle & angle<315)
+            {
+                if (x <= _MINX)
+                {
+                    boundryHit = true;
+                    newX = _MINX;
+                }
+                if (y <= _MINY)
+                {
+                    newY = _MINY;
+                    boundryHit = true;
+                }
+            }
+            else
+            {
+                if (x >= _MAXX)
+                {
+                    newX = _MAXX;
+                    boundryHit = true;
+                }
+                if (y >= _MAXY)
+                {
+                    newY = _MAXY;
+                    boundryHit = true;
+                }
+            }
+            return boundryHit;
+        }
+
     }
 }
