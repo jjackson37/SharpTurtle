@@ -23,6 +23,8 @@ namespace SharpTurtle
             coordY = 5.0F;
             textBox1.Value = 10;
             angleInput.Value = 0;
+            buttonSelectedBackground.BackColor = Color.White;
+            buttonSelectedColor.BackColor = Color.Red;
             lineList.Clear();
             RedrawLines();
         }
@@ -101,6 +103,19 @@ namespace SharpTurtle
             }
         }
 
+        private void buttonBackgroundColour_Click(object sender, EventArgs e)
+        {
+            ColorDialog selectColorDialog = new ColorDialog();
+            selectColorDialog.AllowFullOpen = true;
+            selectColorDialog.ShowHelp = true;
+            selectColorDialog.Color = buttonSelectedBackground.BackColor;
+            if (selectColorDialog.ShowDialog() == DialogResult.OK)
+            {
+                buttonSelectedBackground.BackColor = selectColorDialog.Color;
+                RedrawLines();
+            }
+        }
+
         private void mainForm_Shown(object sender, EventArgs e)
         {
             RedrawLines();
@@ -131,7 +146,7 @@ namespace SharpTurtle
         {
             Pen drawingPen;
             Graphics formGraphics = CreateGraphics();
-            formGraphics.Clear(Color.White);
+            formGraphics.Clear(buttonSelectedBackground.BackColor);
             foreach (string lineString in lineList)
             {
                 string[] lineArray = lineString.Split(' ');
