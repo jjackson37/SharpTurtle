@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.controlsBox = new System.Windows.Forms.GroupBox();
+            this.buttonSelectedBackground = new System.Windows.Forms.Button();
+            this.buttonBackgroundColour = new System.Windows.Forms.Button();
             this.buttonExecute = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.NumericUpDown();
             this.paintCheckBox = new System.Windows.Forms.CheckBox();
@@ -41,8 +43,6 @@
             this.buttonDown = new System.Windows.Forms.Button();
             this.buttonUp = new System.Windows.Forms.Button();
             this.commandInput = new System.Windows.Forms.TextBox();
-            this.buttonSelectedBackground = new System.Windows.Forms.Button();
-            this.buttonBackgroundColour = new System.Windows.Forms.Button();
             this.controlsBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.textBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.angleInput)).BeginInit();
@@ -71,8 +71,32 @@
             this.controlsBox.TabStop = false;
             this.controlsBox.Text = "Controls";
             // 
+            // buttonSelectedBackground
+            // 
+            this.buttonSelectedBackground.BackColor = System.Drawing.Color.Red;
+            this.buttonSelectedBackground.Enabled = false;
+            this.buttonSelectedBackground.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonSelectedBackground.Location = new System.Drawing.Point(141, 425);
+            this.buttonSelectedBackground.Name = "buttonSelectedBackground";
+            this.buttonSelectedBackground.Size = new System.Drawing.Size(44, 44);
+            this.buttonSelectedBackground.TabIndex = 18;
+            this.buttonSelectedBackground.UseVisualStyleBackColor = false;
+            // 
+            // buttonBackgroundColour
+            // 
+            this.buttonBackgroundColour.Location = new System.Drawing.Point(15, 423);
+            this.buttonBackgroundColour.Name = "buttonBackgroundColour";
+            this.buttonBackgroundColour.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.buttonBackgroundColour.Size = new System.Drawing.Size(172, 48);
+            this.buttonBackgroundColour.TabIndex = 19;
+            this.buttonBackgroundColour.Text = "Background Color Select";
+            this.buttonBackgroundColour.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.buttonBackgroundColour.UseVisualStyleBackColor = true;
+            this.buttonBackgroundColour.Click += new System.EventHandler(this.buttonBackgroundColour_Click);
+            // 
             // buttonExecute
             // 
+            this.buttonExecute.AllowDrop = true;
             this.buttonExecute.Location = new System.Drawing.Point(7, 571);
             this.buttonExecute.Name = "buttonExecute";
             this.buttonExecute.Size = new System.Drawing.Size(91, 83);
@@ -80,6 +104,8 @@
             this.buttonExecute.Text = "Execute";
             this.buttonExecute.UseVisualStyleBackColor = true;
             this.buttonExecute.Click += new System.EventHandler(this.buttonExecute_Click);
+            this.buttonExecute.DragDrop += new System.Windows.Forms.DragEventHandler(this.buttonExecute_DragDrop);
+            this.buttonExecute.DragEnter += new System.Windows.Forms.DragEventHandler(this.buttonExecute_DragEnter);
             // 
             // textBox1
             // 
@@ -200,34 +226,12 @@
             // commandInput
             // 
             this.commandInput.Location = new System.Drawing.Point(12, 576);
+            this.commandInput.MaxLength = 2147483647;
             this.commandInput.Multiline = true;
             this.commandInput.Name = "commandInput";
             this.commandInput.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.commandInput.Size = new System.Drawing.Size(454, 89);
             this.commandInput.TabIndex = 1;
-            // 
-            // buttonSelectedBackground
-            // 
-            this.buttonSelectedBackground.BackColor = System.Drawing.Color.Red;
-            this.buttonSelectedBackground.Enabled = false;
-            this.buttonSelectedBackground.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonSelectedBackground.Location = new System.Drawing.Point(141, 425);
-            this.buttonSelectedBackground.Name = "buttonSelectedBackground";
-            this.buttonSelectedBackground.Size = new System.Drawing.Size(44, 44);
-            this.buttonSelectedBackground.TabIndex = 18;
-            this.buttonSelectedBackground.UseVisualStyleBackColor = false;
-            // 
-            // buttonBackgroundColour
-            // 
-            this.buttonBackgroundColour.Location = new System.Drawing.Point(15, 423);
-            this.buttonBackgroundColour.Name = "buttonBackgroundColour";
-            this.buttonBackgroundColour.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.buttonBackgroundColour.Size = new System.Drawing.Size(172, 48);
-            this.buttonBackgroundColour.TabIndex = 19;
-            this.buttonBackgroundColour.Text = "Background Color Select";
-            this.buttonBackgroundColour.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.buttonBackgroundColour.UseVisualStyleBackColor = true;
-            this.buttonBackgroundColour.Click += new System.EventHandler(this.buttonBackgroundColour_Click);
             // 
             // mainForm
             // 
