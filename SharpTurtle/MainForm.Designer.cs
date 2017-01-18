@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.controlsBox = new System.Windows.Forms.GroupBox();
             this.buttonExecute = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.NumericUpDown();
@@ -41,8 +40,9 @@
             this.buttonSelectColor = new System.Windows.Forms.Button();
             this.buttonDown = new System.Windows.Forms.Button();
             this.buttonUp = new System.Windows.Forms.Button();
-            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.commandInput = new System.Windows.Forms.TextBox();
+            this.buttonSelectedBackground = new System.Windows.Forms.Button();
+            this.buttonBackgroundColour = new System.Windows.Forms.Button();
             this.controlsBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.textBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.angleInput)).BeginInit();
@@ -51,6 +51,8 @@
             // controlsBox
             // 
             this.controlsBox.BackColor = System.Drawing.SystemColors.Control;
+            this.controlsBox.Controls.Add(this.buttonSelectedBackground);
+            this.controlsBox.Controls.Add(this.buttonBackgroundColour);
             this.controlsBox.Controls.Add(this.buttonExecute);
             this.controlsBox.Controls.Add(this.textBox1);
             this.controlsBox.Controls.Add(this.paintCheckBox);
@@ -101,7 +103,7 @@
             // 
             this.paintCheckBox.AutoSize = true;
             this.paintCheckBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.paintCheckBox.Location = new System.Drawing.Point(17, 423);
+            this.paintCheckBox.Location = new System.Drawing.Point(17, 477);
             this.paintCheckBox.Name = "paintCheckBox";
             this.paintCheckBox.Size = new System.Drawing.Size(138, 29);
             this.paintCheckBox.TabIndex = 5;
@@ -129,6 +131,7 @@
             this.angleInput.Name = "angleInput";
             this.angleInput.Size = new System.Drawing.Size(170, 60);
             this.angleInput.TabIndex = 14;
+            this.angleInput.ValueChanged += new System.EventHandler(this.angleInput_ValueChanged);
             // 
             // label1
             // 
@@ -154,7 +157,7 @@
             this.buttonSelectedColor.BackColor = System.Drawing.Color.Red;
             this.buttonSelectedColor.Enabled = false;
             this.buttonSelectedColor.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonSelectedColor.Location = new System.Drawing.Point(143, 373);
+            this.buttonSelectedColor.Location = new System.Drawing.Point(141, 371);
             this.buttonSelectedColor.Name = "buttonSelectedColor";
             this.buttonSelectedColor.Size = new System.Drawing.Size(44, 44);
             this.buttonSelectedColor.TabIndex = 0;
@@ -162,12 +165,12 @@
             // 
             // buttonSelectColor
             // 
-            this.buttonSelectColor.Location = new System.Drawing.Point(17, 371);
+            this.buttonSelectColor.Location = new System.Drawing.Point(15, 369);
             this.buttonSelectColor.Name = "buttonSelectColor";
             this.buttonSelectColor.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.buttonSelectColor.Size = new System.Drawing.Size(172, 48);
             this.buttonSelectColor.TabIndex = 6;
-            this.buttonSelectColor.Text = "          Color Select";
+            this.buttonSelectColor.Text = "       Line Color Select";
             this.buttonSelectColor.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.buttonSelectColor.UseVisualStyleBackColor = true;
             this.buttonSelectColor.Click += new System.EventHandler(this.buttonSelectColor_Click);
@@ -194,13 +197,6 @@
             this.buttonUp.UseVisualStyleBackColor = true;
             this.buttonUp.Click += new System.EventHandler(this.PenDraw);
             // 
-            // toolTip1
-            // 
-            this.toolTip1.AutomaticDelay = 0;
-            this.toolTip1.ShowAlways = true;
-            this.toolTip1.UseAnimation = false;
-            this.toolTip1.UseFading = false;
-            // 
             // commandInput
             // 
             this.commandInput.Location = new System.Drawing.Point(12, 576);
@@ -209,6 +205,29 @@
             this.commandInput.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.commandInput.Size = new System.Drawing.Size(454, 89);
             this.commandInput.TabIndex = 1;
+            // 
+            // buttonSelectedBackground
+            // 
+            this.buttonSelectedBackground.BackColor = System.Drawing.Color.Red;
+            this.buttonSelectedBackground.Enabled = false;
+            this.buttonSelectedBackground.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonSelectedBackground.Location = new System.Drawing.Point(141, 425);
+            this.buttonSelectedBackground.Name = "buttonSelectedBackground";
+            this.buttonSelectedBackground.Size = new System.Drawing.Size(44, 44);
+            this.buttonSelectedBackground.TabIndex = 18;
+            this.buttonSelectedBackground.UseVisualStyleBackColor = false;
+            // 
+            // buttonBackgroundColour
+            // 
+            this.buttonBackgroundColour.Location = new System.Drawing.Point(15, 423);
+            this.buttonBackgroundColour.Name = "buttonBackgroundColour";
+            this.buttonBackgroundColour.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.buttonBackgroundColour.Size = new System.Drawing.Size(172, 48);
+            this.buttonBackgroundColour.TabIndex = 19;
+            this.buttonBackgroundColour.Text = "Background Color Select";
+            this.buttonBackgroundColour.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.buttonBackgroundColour.UseVisualStyleBackColor = true;
+            this.buttonBackgroundColour.Click += new System.EventHandler(this.buttonBackgroundColour_Click);
             // 
             // mainForm
             // 
@@ -246,11 +265,12 @@
         private System.Windows.Forms.Button buttonReset;
         private System.Windows.Forms.NumericUpDown angleInput;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.NumericUpDown textBox1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox commandInput;
         private System.Windows.Forms.Button buttonExecute;
+        private System.Windows.Forms.Button buttonSelectedBackground;
+        private System.Windows.Forms.Button buttonBackgroundColour;
     }
 }
 
