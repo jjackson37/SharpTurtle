@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.controlsBox = new System.Windows.Forms.GroupBox();
             this.buttonExecute = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.NumericUpDown();
@@ -41,7 +40,6 @@
             this.buttonSelectColor = new System.Windows.Forms.Button();
             this.buttonDown = new System.Windows.Forms.Button();
             this.buttonUp = new System.Windows.Forms.Button();
-            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.commandInput = new System.Windows.Forms.TextBox();
             this.controlsBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.textBox1)).BeginInit();
@@ -129,6 +127,7 @@
             this.angleInput.Name = "angleInput";
             this.angleInput.Size = new System.Drawing.Size(170, 60);
             this.angleInput.TabIndex = 14;
+            this.angleInput.ValueChanged += new System.EventHandler(this.angleInput_ValueChanged);
             // 
             // label1
             // 
@@ -194,13 +193,6 @@
             this.buttonUp.UseVisualStyleBackColor = true;
             this.buttonUp.Click += new System.EventHandler(this.PenDraw);
             // 
-            // toolTip1
-            // 
-            this.toolTip1.AutomaticDelay = 0;
-            this.toolTip1.ShowAlways = true;
-            this.toolTip1.UseAnimation = false;
-            this.toolTip1.UseFading = false;
-            // 
             // commandInput
             // 
             this.commandInput.Location = new System.Drawing.Point(12, 576);
@@ -246,7 +238,6 @@
         private System.Windows.Forms.Button buttonReset;
         private System.Windows.Forms.NumericUpDown angleInput;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.NumericUpDown textBox1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox commandInput;
