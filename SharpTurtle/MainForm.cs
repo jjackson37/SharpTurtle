@@ -136,10 +136,6 @@ namespace SharpTurtle
             {
                 mainForm_Load(null, null);
             }
-            else
-            {
-                //do nothing
-            }
         }
 
         private void RedrawLines()
