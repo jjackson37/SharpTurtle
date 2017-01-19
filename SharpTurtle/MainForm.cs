@@ -31,13 +31,17 @@ namespace SharpTurtle
 
         private void buttonExecute_Click(object sender, EventArgs e)
         {
+            ExecuteCommands(commandInput.Text);
+        }
+
+        private void ExecuteCommands(string commandString)
+        {
             bool incorrectCommand = false;
             string errors = "Incorrect command(s) found and not executed";
-            string commandString = commandInput.Text;
             string[] commandArray = commandString.Split(';');
             foreach (string currentCommand in commandArray)
             {
-                
+
                 if (!(currentCommand.Contains("(")))
                 {
                     incorrectCommand = true;
@@ -127,6 +131,22 @@ namespace SharpTurtle
             {
                 angleInput.Value = 0;
             }
+        }
+
+        private void buttonExecute_DragDrop(object sender, DragEventArgs e)
+        {
+            string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
+            foreach(string commandFile in files)
+            {
+                string text = System.IO.File.ReadAllText(commandFile);
+                ExecuteCommands(text);
+            }
+            
+        }
+
+        private void buttonExecute_DragEnter(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop)) e.Effect = DragDropEffects.Copy;
         }
 
         private void buttonReset_Click(object sender, EventArgs e)
