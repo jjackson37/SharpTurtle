@@ -1,4 +1,7 @@
 # SharpTurtle
+
+[![Build Status](https://travis-ci.org/jjackson37/SharpTurtle.svg?branch=master)](https://travis-ci.org/jjackson37/SharpTurtle)
+
 *Windows forms line based drawing program, written in C#*
 ## Features
 * Manual drawing with forward and backward buttons with editable distance and angle to travel, togglable drawing, and changable color.

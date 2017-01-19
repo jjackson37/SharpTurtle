@@ -1,1 +1,9 @@
 language: csharp
+script:
+  - xbuild /p:Configuration=Debug SharpTurtle.sln
+before_install:
+  - sudo apt-get install nunit-console
+before_script:
+  - nuget restore SharpTurtle.sln
+after_script:
+  - nunit-console Tests/bin/Debug/Tests.dll
