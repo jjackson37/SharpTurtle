@@ -19,12 +19,11 @@ pen(true);forward(50);pen(false);forward(50);pen(true);forward(50)
 ```
 *Commands are not case sensitive*
 ### Command list
-* Forward/Backward
-  * Forward(distance) or Backward(distance)
-  * Moves the pointer forward/backward by a specified amount
-* Right/Left
-  * Right(angle) or Left(angle)
-  * Turns the pointers direction to draw the next line at by a specified angle
-* Pen
-  * Pen(true/false)
-  * Sets if the program is drawing or not
+|Command|Syntax|Function|
+|---|---|---|
+|Forward/Backward|Forward(distance)/Backward(distance)|Moves the pointer forward/backward by a specified amount|
+|Right/Left|Right(angle)/Left(angle)|Turns the pointers direction to draw the next line at by a specified angle|
+|Pen|Pen(true/false)|Sets if the program is drawing or not|
+
+## UI Screenshot
+![SharpTurtle UI Screenshot](http://i.imgur.com/BHyPZoK.png "SharpTurtle UI")
