@@ -10,7 +10,7 @@ namespace SharpTurtle
         const int _MAXX = 470, _MINX = 0, _MAXY = 560, _MINY = 0;
         static float coordX, coordY;
         float newX = 5.0F, newY = 5.0F;
-        List<string> lineList = new List<string>();
+        static System.Drawing.Drawing2D.GraphicsState currentDrawing;
 
         public mainForm()
         {
@@ -26,7 +26,7 @@ namespace SharpTurtle
             angleInput.Value = 0;
             buttonSelectedBackground.BackColor = Color.White;
             buttonSelectedColor.BackColor = Color.Red;
-            lineList.Clear();
+            currentDrawing = null;
             RedrawLines();
         }
 
@@ -167,20 +167,23 @@ namespace SharpTurtle
 
         private void RedrawLines()
         {
-            Pen drawingPen;
+            Color lineColor = buttonSelectedColor.BackColor;
+            Pen drawingPen = new Pen(lineColor);
             Graphics formGraphics = CreateGraphics();
             formGraphics.Clear(buttonSelectedBackground.BackColor);
-            foreach (string lineString in lineList)
+            if (currentDrawing != null)
             {
-                string[] lineArray = lineString.Split(' ');
-                Color lineColor = Color.FromArgb(Convert.ToInt32(lineArray[4]), Convert.ToInt32(lineArray[5]), Convert.ToInt32(lineArray[6]), Convert.ToInt32(lineArray[7]));
-                drawingPen = new Pen(lineColor);
-                float oldX = Convert.ToSingle(lineArray[0]), oldY = Convert.ToSingle(lineArray[1]), newX = Convert.ToSingle(lineArray[2]), newY = Convert.ToSingle(lineArray[3]);
-                formGraphics.DrawLine(drawingPen, oldX, oldY, newX, newY);
-                drawingPen.Dispose();
+                formGraphics.Restore(currentDrawing);
             }
-            drawingPen = new Pen(buttonSelectedColor.BackColor);
+            if (paintCheckBox.Checked)
+            {
+                formGraphics.DrawLine(drawingPen, coordX, coordY, (float)Math.Round(newX, 1), (float)Math.Round(newY, 1));
+            }
+            formGraphics.Save();
+            coordY = (float)Math.Round(newY, 1);
+            coordX = (float)Math.Round(newX, 1);
             formGraphics.DrawEllipse(drawingPen, coordX - 3, coordY - 3, 6, 6);
+            drawingPen.Dispose();
             formGraphics.Dispose();
         }
 
@@ -197,7 +200,6 @@ namespace SharpTurtle
                     MoveTurtle(drawLength, false);
                     break;
             }
-            RedrawLines();
         }
 
         private void CheckBoundires(float x, float y, bool forward)
@@ -263,7 +265,6 @@ namespace SharpTurtle
 
         private void MoveTurtle(int drawLength, bool forward)
         {
-            string addToList = Convert.ToString(coordX) + " " + Convert.ToString(coordY);
             double angleRadians = ((double)angleInput.Value % 360) * Math.PI / 180;
             newX = coordX;
             newY = coordY;
@@ -286,15 +287,7 @@ namespace SharpTurtle
                     CheckBoundires(newX, newY, false);
                 }
             }
-            coordX = (float)Math.Round(newX, 1);
-            coordY = (float)Math.Round(newY, 1);
-            if (paintCheckBox.Checked)
-            {
-                addToList += (" " + Convert.ToString(coordX) + " " + Convert.ToString(coordY) + " "
-                    + buttonSelectedColor.BackColor.A + " " + buttonSelectedColor.BackColor.R + " "
-                    + buttonSelectedColor.BackColor.G + " " + buttonSelectedColor.BackColor.B);
-                lineList.Add(addToList);
-            }
+            RedrawLines();
         }
     }
 }
