@@ -19,6 +19,7 @@ namespace SharpTurtle
 
         private void mainForm_Load(object sender, EventArgs e)
         {
+            buttonExecute.Text = "Execute";
             coordX = 5.0F;
             coordY = 5.0F;
             textBox1.Value = 10;
@@ -31,7 +32,9 @@ namespace SharpTurtle
 
         private void buttonExecute_Click(object sender, EventArgs e)
         {
+            buttonExecute.Text = "Processing...";
             ExecuteCommands(commandInput.Text);
+            buttonExecute.Text = "Execute";
         }
 
         private void ExecuteCommands(string commandString)
@@ -79,6 +82,9 @@ namespace SharpTurtle
                         break;
                     case "pen":
                         paintCheckBox.Checked = Convert.ToBoolean(commandParameter);
+                        break;
+                    case "color":
+                        buttonSelectedColor.BackColor = Color.FromName(commandParameter);
                         break;
                     default:
                         incorrectCommand = true;
@@ -135,13 +141,14 @@ namespace SharpTurtle
 
         private void buttonExecute_DragDrop(object sender, DragEventArgs e)
         {
+            buttonExecute.Text = "Processing...";
             string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
             foreach(string commandFile in files)
             {
                 string text = System.IO.File.ReadAllText(commandFile);
                 ExecuteCommands(text);
             }
-            
+            buttonExecute.Text = "Execute";
         }
 
         private void buttonExecute_DragEnter(object sender, DragEventArgs e)
@@ -155,10 +162,6 @@ namespace SharpTurtle
             if (confirmResult == DialogResult.Yes)
             {
                 mainForm_Load(null, null);
-            }
-            else
-            {
-                //do nothing
             }
         }
 
