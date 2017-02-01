@@ -1,6 +1,8 @@
 # SharpTurtle
 
-[![Build Status](https://travis-ci.org/jjackson37/SharpTurtle.svg?branch=master)](https://travis-ci.org/jjackson37/SharpTurtle)
+Master:` ` [![Build Status](https://travis-ci.org/jjackson37/SharpTurtle.svg?branch=master)](https://travis-ci.org/jjackson37/SharpTurtle)  ` ` Dev:` ` [![Build Status](https://travis-ci.org/jjackson37/SharpTurtle.svg?branch=Dev)](https://travis-ci.org/jjackson37/SharpTurtle)
+
+
 
 *Windows forms line based drawing program, written in C#*
 ## Features
