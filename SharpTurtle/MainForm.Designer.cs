@@ -245,6 +245,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "mainForm";
+            this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SharpTurtle";
             this.Load += new System.EventHandler(this.mainForm_Load);
